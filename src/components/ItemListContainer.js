@@ -1,16 +1,19 @@
+import ItemList from "./ItemList";
 
 const ItemListContainer = ({ value }) => {
     const cantidadProductos = parseInt(value);
     let color = '';
     if (cantidadProductos > 0) {
-        color = 'red';
+        color = 'ivory';
     } else {
         color = 'blue';
     }
 
 
     return (
-        <div style={{ background: color, height: 500 }}></div>
+        <div style={{ background: color, height: 500 }}>
+            <ItemList />
+        </div>
     );
 }
 

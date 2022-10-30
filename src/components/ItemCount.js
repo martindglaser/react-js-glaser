@@ -5,17 +5,17 @@ const ItemCount = ({ stock }) => {
 
     return (
         <div>
-            <button onClick={() => {
+            <button style={{ marginRight: 10 }} className="btn btn-outline-primary" onClick={() => {
                 if (count > 0) {
                     setCount(count - 1)
                 }
-            }} className="btn btn-outline-primary">-</button>
+            }}>-</button>
             <span>{count}</span>
-            <button onClick={() => {
+            <button style={{ marginLeft: 10 }} className="btn btn-outline-primary" onClick={() => {
                 if (count < stock) {
                     setCount(count + 1)
                 }
-            }} className="btn btn-outline-primary">+</button>
+            }}>+</button>
         </div >
     );
 }

@@ -1,5 +1,5 @@
 import Router from './App/Router';
-
+import './App/styles.css'
 
 
 const App = () => <Router />

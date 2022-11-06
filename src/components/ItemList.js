@@ -1,8 +1,12 @@
 import { useEffect, useState } from "react";
 import Item from "./Item";
-import { Productos } from "./Productos.json.js";
+import { Productos, Categorias } from "./Productos.json.js";
+import { NavLink, useParams } from "react-router-dom";
+import { Button } from "bootstrap";
 
 const ItemList = () => {
+
+    const { id } = useParams();
 
     const [state, setState] = useState('')
     const [products, setProducts] = useState('');
@@ -15,23 +19,21 @@ const ItemList = () => {
             setTimeout(() => resolve(ArrayItems), 2000);
         });
         getItems.then(result => {
-            setProducts(result);
+            if (id !== undefined && id !== null) {
+                setProducts(
+                    result.filter(obj => {
+                        return obj.categoriaId == id;
+                    })
+                )
+            } else {
+                setProducts(result);
+            }
+
             setState('productsFetched');
         });
-    }, [])
+    }, [id])
 
-    // useEffect(() => {
-    //     fetch(`/components/productos.json`)
-    //         .then(response => response.text())
-    //         .then(data => {
-    //             console.log(data)
-    //             setState('loading')
-    //             setTimeout(() => {
-    //                 setProducts(data);
-    //                 setState('productsFetched');
-    //             }, 2000);
-    //         });
-    // }, [])
+
 
     if (state === 'loading') {
         return (
@@ -40,13 +42,30 @@ const ItemList = () => {
     }
     if (state === 'productsFetched') {
         return (
-            < div style={{ display: 'flex', flexWrap: "wrap" }}>
-                {
-                    products.map((products, i) => {
-                        return <Item ItemData={products} key={i} />
-                    })
-                }
-            </div >
+            <div>
+                <div>
+                    <h3>Filtrar</h3>
+                    <div>
+                        {
+                            Categorias.map((Categorias, i) => {
+                                return (
+                                    <NavLink key={i} to={`${process.env.PUBLIC_URL}/category/${Categorias.id}`}>
+                                        <button className="btn btn-outline-primary" >{Categorias.categoria}</button>
+                                    </NavLink>
+                                )
+                            })
+                        }
+                        <button className="btn btn-primary" > test</button>
+                    </div>
+                </div>
+                < div style={{ display: 'flex', flexWrap: "wrap" }}>
+                    {
+                        products.map((products, i) => {
+                            return <Item ItemData={products} key={i} />
+                        })
+                    }
+                </div >
+            </div>
         );
     }
 }

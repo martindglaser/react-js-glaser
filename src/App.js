@@ -1,20 +1,19 @@
-import NavBar from './components/NavBarPers';
-import ItemListContainer from './components/ItemListContainer';
-import { useState } from "react";
+import Router from './App/Router';
 
 
 
-const App = () => {
-    return (
-        <div>
-            <div>
-                <NavBar />
-                <ItemListContainer value="1" />
-            </div>
-        </div>
-    );
+const App = () => <Router />
+// {
+//     return (
+//         <div>
+//             <NavBar />
+//             <ItemListContainer value="1" />
+//             <ItemDetailContainer />
 
-}
+//         </div>
+//     );
+
+// }
 
 
 export default App;

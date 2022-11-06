@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import CartWidget from './CartWidget.js';
 
 const NavBar = () => {
@@ -11,14 +12,12 @@ const NavBar = () => {
             </button>
             <div className="collapse navbar-collapse" id="navbarNav">
                 <ul className="navbar-nav">
-                    <li className="nav-item active">
-                        <a className="nav-link" href="#">Home</a>
+                    <li className="nav-item">
+                        <NavLink className="nav-link" to={`${process.env.PUBLIC_URL}/`}>Prod</NavLink>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href="#">Productos</a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link" href="#">Carrito</a>
+                        <NavLink className="nav-link" to={`${process.env.PUBLIC_URL}/detalle`}>Prod</NavLink>
+
                     </li>
                 </ul>
             </div>

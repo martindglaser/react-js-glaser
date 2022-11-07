@@ -55,7 +55,6 @@ const ItemList = () => {
                                 )
                             })
                         }
-                        <button className="btn btn-primary" > test</button>
                     </div>
                 </div>
                 < div style={{ display: 'flex', flexWrap: "wrap" }}>

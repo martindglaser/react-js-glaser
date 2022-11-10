@@ -15,10 +15,9 @@ const NavBar = () => {
                     <li className="nav-item">
                         <NavLink className="nav-link" to={`${process.env.PUBLIC_URL}/`}>Prod</NavLink>
                     </li>
-                    <li className="nav-item">
+                    {/* <li className="nav-item">
                         <NavLink className="nav-link" to={`${process.env.PUBLIC_URL}/detalle`}>Prod</NavLink>
-
-                    </li>
+                    </li> */}
                 </ul>
             </div>
         </nav>

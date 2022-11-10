@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Productos, Categorias } from "../components/Productos.json";
+import ItemCount from "./ItemCount";
 
 const ItemDetail = () => {
     const { idItem } = useParams();
@@ -47,6 +48,7 @@ const ItemDetail = () => {
                 <div>
                     <label>Stock:</label> {item[0].stock}
                 </div>
+                <ItemCount stock={item[0].stock} />
             </div>
         )
     }

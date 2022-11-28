@@ -3,18 +3,27 @@ import Item from "./Item";
 import { Productos, Categorias } from "./Productos.json.js";
 import { NavLink, useParams } from "react-router-dom";
 import { Button } from "bootstrap";
+import { clear } from "./CartMethods";
+import { useMyContext } from "../context/MyProvider";
 
 const ItemList = () => {
 
     const { id } = useParams();
 
-    const [state, setState] = useState('')
+    const [estado, setEstado] = useState('')
     const [products, setProducts] = useState('');
+    const [context, setContext] = useMyContext()
+
+    const clearCarrito = () => {
+        const newContext = clear();
+        setContext(newContext);
+        console.log(context)
+    }
 
 
     useEffect(() => {
         const getItems = new Promise((resolve, reject) => {
-            setState('loading')
+            setEstado('loading')
             const ArrayItems = Productos;
             setTimeout(() => resolve(ArrayItems), 2000);
         });
@@ -29,18 +38,18 @@ const ItemList = () => {
                 setProducts(result);
             }
 
-            setState('productsFetched');
+            setEstado('productsFetched');
         });
     }, [id])
 
 
 
-    if (state === 'loading') {
+    if (estado === 'loading') {
         return (
             <div>Loading...</div>
         )
     }
-    if (state === 'productsFetched') {
+    if (estado === 'productsFetched') {
         return (
             <div>
                 <div>
@@ -56,6 +65,9 @@ const ItemList = () => {
                             })
                         }
                     </div>
+                </div>
+                <div>
+                    <button className="btn btn-outline-danger" onClick={clearCarrito}>Vaciar Carrito</button>
                 </div>
                 < div style={{ display: 'flex', flexWrap: "wrap" }}>
                     {

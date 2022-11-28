@@ -13,11 +13,11 @@ const NavBar = () => {
             <div className="collapse navbar-collapse" id="navbarNav">
                 <ul className="navbar-nav">
                     <li className="nav-item">
-                        <NavLink className="nav-link" to={`${process.env.PUBLIC_URL}/`}>Prod</NavLink>
+                        <NavLink className="nav-link" to={`${process.env.PUBLIC_URL}/`}>Productos</NavLink>
                     </li>
-                    {/* <li className="nav-item">
-                        <NavLink className="nav-link" to={`${process.env.PUBLIC_URL}/detalle`}>Prod</NavLink>
-                    </li> */}
+                    <li className="nav-item">
+                        <NavLink className="nav-link" to={`${process.env.PUBLIC_URL}/cart`}>Carrito</NavLink>
+                    </li>
                 </ul>
             </div>
         </nav>

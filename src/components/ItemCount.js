@@ -1,7 +1,19 @@
 import { useState } from "react";
 
-const ItemCount = ({ stock }) => {
-    const [count, setCount] = useState(0);
+const ItemCount = ({ value, stock, id, onClick }) => {
+    let valueCounter;
+    if (value === undefined || value === null) {
+        valueCounter = 0;
+    } else {
+        valueCounter = value
+    }
+
+    const [count, setCount] = useState(valueCounter);
+    const counter = () => {
+
+    }
+
+    onClick(count, id, stock)
 
     return (
         <div>

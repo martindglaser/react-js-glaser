@@ -32,7 +32,6 @@ export const removeItem = (context, idItem) => {
 }
 
 export const setItemCart = (context, idItem, quantity, stock) => {
-    console.log(quantity)
 
     if (quantity > stock) {
         return (context)
@@ -42,7 +41,9 @@ export const setItemCart = (context, idItem, quantity, stock) => {
         return obj.id === idItem;
     })
 
+
     context[itemIndex].quantity = quantity;
+    console.log(context)
     return (context)
 
 }

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { getProductoById } from "../App/api";
 import { Productos, Categorias } from "../components/Productos.json";
 import { useMyContext } from "../context/MyProvider";
 import { addItem, removeItem } from "./CartMethods";
@@ -11,29 +12,34 @@ let counter = 0;
 const ItemDetail = () => {
     const { idItem } = useParams();
     const [item, setItem] = useState([]);
+    const [estado, setEstado] = useState('');
     const [context, setContext] = useMyContext();
 
 
     useEffect(() => {
-        setItem(
-            Productos.filter(obj => {
-                return obj.id == idItem;
-            })
-        )
+        setEstado('loading')
+        getProductoById(idItem).then(result => {
+            setEstado('fetched')
+            setItem(result)
+        })
 
     }, [idItem])
 
 
 
+    if (estado === 'loading') {
+        return (
+            <p>Loading...</p>
+        )
 
-    if (item.length > 0) {
+    } else if (estado === 'fetched') {
 
         const Categoria = Categorias.filter(obj => {
-            return obj.id == item[0].categoriaId
+            return obj.id == item.categoriaId
         })
         let categoriaShow;
         if (Categoria.length > 0) {
-            categoriaShow = Categoria[0].categoria;
+            categoriaShow = Categoria.categoria;
         } else {
             categoriaShow = '';
         }
@@ -47,7 +53,7 @@ const ItemDetail = () => {
 
 
         const agregar = () => {
-            const newContext = addItem(context, item[0].id, counter, item[0].stock)
+            const newContext = addItem(context, idItem, counter, item.stock)
             setContext(newContext);
             console.log(context)
         }
@@ -61,21 +67,21 @@ const ItemDetail = () => {
         return (
             <div>
                 <div>
-                    <label>Articulo:</label> {item[0].descripcion}
+                    <label>Articulo:</label> {item.descripcion}
                 </div>
                 <div>
-                    <label>Precio:</label> ${item[0].precio}
+                    <label>Precio:</label> ${item.precio}
                 </div>
                 <div>
-                    <label>Precio:</label> {item[0].descripcion}
+                    <label>Precio:</label> {item.descripcion}
                 </div>
                 <div>
                     <label>Categoria:</label> {categoriaShow}
                 </div>
                 <div>
-                    <label>Stock:</label> {item[0].stock}
+                    <label>Stock:</label> {item.stock}
                 </div>
-                <ItemCount onClick={getCount} stock={item[0].stock} />
+                <ItemCount onClick={getCount} stock={item.stock} />
 
                 <button onClick={agregar} className="btn btn-outline-success">Agregar al Carrito</button>
                 <button className="btn btn-outline-danger" onClick={eliminarDelCarrito}>Eliminar del carrito</button>

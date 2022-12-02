@@ -5,6 +5,7 @@ import { NavLink, useParams } from "react-router-dom";
 import { Button } from "bootstrap";
 import { clear } from "./CartMethods";
 import { useMyContext } from "../context/MyProvider";
+import { getProducts } from "../App/api";
 
 const ItemList = () => {
 
@@ -22,12 +23,9 @@ const ItemList = () => {
 
 
     useEffect(() => {
-        const getItems = new Promise((resolve, reject) => {
-            setEstado('loading')
-            const ArrayItems = Productos;
-            setTimeout(() => resolve(ArrayItems), 2000);
-        });
-        getItems.then(result => {
+
+        setEstado('loading')
+        getProducts().then(result => {
             if (id !== undefined && id !== null) {
                 setProducts(
                     result.filter(obj => {
@@ -39,7 +37,7 @@ const ItemList = () => {
             }
 
             setEstado('productsFetched');
-        });
+        })
     }, [id])
 
 

@@ -9,9 +9,7 @@ const ItemCount = ({ value, stock, id, onClick }) => {
     }
 
     const [count, setCount] = useState(valueCounter);
-    const counter = () => {
 
-    }
 
     onClick(count, id, stock)
 

@@ -1,9 +1,10 @@
+import { useContext } from "react";
+import { CartContext } from "../context/CartProvider";
+
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getProductoById } from "../App/api";
 import { Productos, Categorias } from "../components/Productos.json";
-import { useMyContext } from "../context/MyProvider";
-import { addItem, removeItem } from "./CartMethods";
 import ItemCount from "./ItemCount";
 
 
@@ -13,13 +14,17 @@ const ItemDetail = () => {
     const { idItem } = useParams();
     const [item, setItem] = useState([]);
     const [estado, setEstado] = useState('');
-    const [context, setContext] = useMyContext();
 
+
+    const { cart, addItem } = useContext(CartContext)
+
+    console.log(cart)
 
     useEffect(() => {
         setEstado('loading')
         getProductoById(idItem).then(result => {
             setEstado('fetched')
+            result.id = idItem;
             setItem(result)
         })
 
@@ -53,15 +58,11 @@ const ItemDetail = () => {
 
 
         const agregar = () => {
-            const newContext = addItem(context, idItem, counter, item.stock)
-            setContext(newContext);
-            console.log(context)
+            addItem(item, counter)
         }
 
         const eliminarDelCarrito = (idItem) => {
-            const newContext = removeItem(context, idItem)
-            setContext(newContext);
-            console.log(context)
+
         }
 
         return (

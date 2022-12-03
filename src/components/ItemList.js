@@ -4,7 +4,7 @@ import { Productos, Categorias } from "./Productos.json.js";
 import { NavLink, useParams } from "react-router-dom";
 import { Button } from "bootstrap";
 import { clear } from "./CartMethods";
-import { useMyContext } from "../context/MyProvider";
+import { useMyContext } from "../context/CartProvider";
 import { getProducts } from "../App/api";
 
 const ItemList = () => {
@@ -13,13 +13,7 @@ const ItemList = () => {
 
     const [estado, setEstado] = useState('')
     const [products, setProducts] = useState('');
-    const [context, setContext] = useMyContext()
 
-    const clearCarrito = () => {
-        const newContext = clear();
-        setContext(newContext);
-        console.log(context)
-    }
 
 
     useEffect(() => {
@@ -63,9 +57,6 @@ const ItemList = () => {
                             })
                         }
                     </div>
-                </div>
-                <div>
-                    <button className="btn btn-outline-danger" onClick={clearCarrito}>Vaciar Carrito</button>
                 </div>
                 < div style={{ display: 'flex', flexWrap: "wrap" }}>
                     {

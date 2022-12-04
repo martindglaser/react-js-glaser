@@ -61,9 +61,6 @@ const ItemDetail = () => {
             addItem(item, counter)
         }
 
-        const eliminarDelCarrito = (idItem) => {
-
-        }
 
         return (
             <div>
@@ -85,7 +82,6 @@ const ItemDetail = () => {
                 <ItemCount onClick={getCount} stock={item.stock} />
 
                 <button onClick={agregar} className="btn btn-outline-success">Agregar al Carrito</button>
-                <button className="btn btn-outline-danger" onClick={eliminarDelCarrito}>Eliminar del carrito</button>
 
             </div >
         )

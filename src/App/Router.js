@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Cart from "../components/Cart";
+import CheckOut from "../pages/CheckOut";
 import ItemDetailContainer from "../pages/ItemDetailContainer";
 import ItemListContainer from "../pages/ItemListContainer";
 
@@ -14,6 +15,7 @@ const Router = () => (
                 <Route path="category/:id" element={<ItemListContainer value="1" />} />
                 <Route path="detalle/:idItem" element={<ItemDetailContainer />} />
                 <Route path="cart" element={<Cart />} />
+                <Route path="checkout" element={<CheckOut />} />
             </Route>
         </Routes>
     </BrowserRouter >

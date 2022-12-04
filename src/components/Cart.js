@@ -37,6 +37,9 @@ const Cart = () => {
                         )
                     })
                 }
+                <Link to={`${process.env.PUBLIC_URL}/checkout`}>
+                    <button className="btn btn-outline-success">Checkout</button>
+                </Link>
             </div >
 
         )
